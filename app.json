@@ -12,7 +12,10 @@
         {
           "origin": "https://n"
         }
-      ]
+      ],
+      "expo-web-browser",
+      "expo-secure-store",
+      "expo-font"
     ],
     "name": "fit-app",
     "slug": "fit-app"
