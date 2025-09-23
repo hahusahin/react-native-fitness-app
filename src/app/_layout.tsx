@@ -6,6 +6,18 @@ import { useAuth } from "@clerk/clerk-expo";
 import { useFonts } from "expo-font";
 import { ActivityIndicator, View } from "react-native";
 import React from "react";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 60 * 1000, // 1 minute
+      retry: 0,
+    },
+  },
+});
 
 function AppNavigator() {
   const { isLoaded, isSignedIn } = useAuth();
@@ -33,6 +45,14 @@ function AppNavigator() {
 
       <Stack.Protected guard={isSignedIn}>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        <Stack.Screen
+          name="exercise-detail"
+          options={{
+            headerShown: false,
+            presentation: "transparentModal",
+            animation: "none",
+          }}
+        />
       </Stack.Protected>
     </Stack>
   );
@@ -41,7 +61,13 @@ function AppNavigator() {
 export default function Layout() {
   return (
     <ClerkProvider tokenCache={tokenCache}>
-      <AppNavigator />
+      <QueryClientProvider client={queryClient}>
+        <GestureHandlerRootView style={{ flex: 1 }}>
+          <BottomSheetModalProvider>
+            <AppNavigator />
+          </BottomSheetModalProvider>
+        </GestureHandlerRootView>
+      </QueryClientProvider>
     </ClerkProvider>
   );
 }

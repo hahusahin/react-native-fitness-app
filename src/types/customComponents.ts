@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 import { TextInputProps, TouchableOpacityProps } from "react-native";
 
 export interface CustomInputProps extends TextInputProps {
-  label: string;
+  label?: string;
   icon?: ReactNode;
   secureTextEntry?: boolean;
   labelStyle?: string;

@@ -14,11 +14,11 @@ const CustomInput = ({
 }: CustomInputProps) => {
   return (
     <View className="my-2 w-full">
-      <Text
-        className={`font-lexend text-lg font-JakartaSemiBold mb-2 ${labelStyle}`}
-      >
-        {label}
-      </Text>
+      {label && (
+        <Text className={`text-lg font-lexend-semibold mb-2 ${labelStyle}`}>
+          {label}
+        </Text>
+      )}
       <View
         className={`flex flex-row justify-start items-center relative bg-neutral-100 rounded-2xl border border-neutral-100 focus:border-primary-500 ${
           icon ? "pl-4" : ""
@@ -26,7 +26,7 @@ const CustomInput = ({
       >
         {icon && icon}
         <TextInput
-          className={`font-lexend rounded-full p-4 font-JakartaSemiBold text-[15px] flex-1 ${inputStyle} text-left`}
+          className={`rounded-full p-4 font-lexend text-[15px] flex-1 ${inputStyle} text-left`}
           secureTextEntry={secureTextEntry}
           {...props}
         />

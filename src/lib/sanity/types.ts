@@ -187,3 +187,67 @@ export type SanityAssetSourceData = {
 
 export type AllSanitySchemaTypes = Workout | Exercise | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageHotspot | SanityImageCrop | SanityFileAsset | SanityImageAsset | SanityImageMetadata | Geopoint | Slug | SanityAssetSourceData;
 export declare const internalGroqTypeReferenceTo: unique symbol;
+// Source: ../src/hooks/useExercises.ts
+// Variable: EXERCISES_QUERY
+// Query: *[_type == "exercise" && isActive == true] | order(name asc) {    ...  }
+export type EXERCISES_QUERYResult = Array<{
+  _id: string;
+  _type: "exercise";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name?: string;
+  description?: string;
+  difficulty?: "advanced" | "beginner" | "intermediate";
+  image?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+  };
+  videoUrl?: string;
+  isActive?: boolean;
+}>;
+// Variable: SINGLE_EXERCISE_QUERY
+// Query: *[_type == "exercise" && _id == $id][0] {    ...  }
+export type SINGLE_EXERCISE_QUERYResult = {
+  _id: string;
+  _type: "exercise";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name?: string;
+  description?: string;
+  difficulty?: "advanced" | "beginner" | "intermediate";
+  image?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+  };
+  videoUrl?: string;
+  isActive?: boolean;
+} | null;
+
+// Query TypeMap
+import "@sanity/client";
+declare module "@sanity/client" {
+  interface SanityQueries {
+    "  *[_type == \"exercise\" && isActive == true] | order(name asc) {\n    ...\n  }": EXERCISES_QUERYResult;
+    "*[_type == \"exercise\" && _id == $id][0] {\n    ...\n  }": SINGLE_EXERCISE_QUERYResult;
+  }
+}
