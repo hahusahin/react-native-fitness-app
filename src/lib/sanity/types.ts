@@ -243,11 +243,36 @@ export type SINGLE_EXERCISE_QUERYResult = {
   isActive?: boolean;
 } | null;
 
+// Source: ../src/hooks/useWorkouts.ts
+// Variable: getWorkoutsQuery
+// Query: *[_type == "workout" && userId == $userId] | order(date desc) {    _id,    date,    duration,    exercises[] {      exercise->{        _id,        name      },      sets[] {        repetitions,        weight,        weightUnit,        _type,        _key      },      _type,      _key    }  }
+export type GetWorkoutsQueryResult = Array<{
+  _id: string;
+  date: string | null;
+  duration: number | null;
+  exercises: Array<{
+    exercise: {
+      _id: string;
+      name: string | null;
+    } | null;
+    sets: Array<{
+      repetitions: number | null;
+      weight: number | null;
+      weightUnit: "kg" | "lbs" | null;
+      _type: "set";
+      _key: string;
+    }> | null;
+    _type: "workoutExercise";
+    _key: string;
+  }> | null;
+}>;
+
 // Query TypeMap
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
     "  *[_type == \"exercise\" && isActive == true] | order(name asc) {\n    ...\n  }": EXERCISES_QUERYResult;
     "*[_type == \"exercise\" && _id == $id][0] {\n    ...\n  }": SINGLE_EXERCISE_QUERYResult;
+    "*[_type == \"workout\" && userId == $userId] | order(date desc) {\n    _id,\n    date,\n    duration,\n    exercises[] {\n      exercise->{\n        _id,\n        name\n      },\n      sets[] {\n        repetitions,\n        weight,\n        weightUnit,\n        _type,\n        _key\n      },\n      _type,\n      _key\n    }\n  }": GetWorkoutsQueryResult;
   }
 }
