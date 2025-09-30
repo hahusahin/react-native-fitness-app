@@ -1,4 +1,3 @@
-import { View, Text, Image } from "react-native";
 import React from "react";
 import { Tabs } from "expo-router";
 import AntDesign from "@expo/vector-icons/AntDesign";
@@ -34,15 +33,6 @@ export default function TabLayout() {
           tabBarIcon: ({ color, size }) => (
             <AntDesign name="pluscircle" color={color} size={size} />
           ),
-        }}
-      />
-      <Tabs.Screen
-        name="active-workout"
-        options={{
-          title: "Active Workout",
-          headerShown: false,
-          href: null,
-          tabBarStyle: { display: "none" },
         }}
       />
       <Tabs.Screen

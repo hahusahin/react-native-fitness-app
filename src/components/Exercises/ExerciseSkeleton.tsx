@@ -2,11 +2,11 @@ import React, { useEffect, useRef, useState } from "react";
 import { View, Animated, LayoutChangeEvent } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 
-interface ExerciseCardSkeletonProps {
+interface ExerciseSkeletonProps {
   count?: number;
 }
 
-const ExerciseCardSkeleton: React.FC<ExerciseCardSkeletonProps> = ({
+const ExerciseSkeleton: React.FC<ExerciseSkeletonProps> = ({
   count = 5,
 }) => {
   return (
@@ -99,4 +99,4 @@ const SkeletonItem: React.FC = () => {
   );
 };
 
-export default ExerciseCardSkeleton;
+export default ExerciseSkeleton;

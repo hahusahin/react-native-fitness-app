@@ -8,7 +8,7 @@ import Animated, {
   interpolate,
 } from "react-native-reanimated";
 
-interface HistoryCardSkeletonProps {
+interface HistorySkeletonProps {
   count?: number;
 }
 
@@ -44,7 +44,7 @@ const SkeletonBox: React.FC<{ style?: any }> = ({ style }) => {
   );
 };
 
-const HistoryCardSkeleton: React.FC<HistoryCardSkeletonProps> = ({
+const HistorySkeleton: React.FC<HistorySkeletonProps> = ({
   count = 3,
 }) => {
   return (
@@ -86,4 +86,4 @@ const HistoryCardSkeleton: React.FC<HistoryCardSkeletonProps> = ({
   );
 };
 
-export default HistoryCardSkeleton;
+export default HistorySkeleton;

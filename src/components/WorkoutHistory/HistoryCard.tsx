@@ -4,12 +4,12 @@ import { Ionicons } from "@expo/vector-icons";
 import { GetWorkoutsQueryResult } from "@/lib/sanity/types";
 import { formatDate, formatDuration } from "@/utils/timeUtils";
 
-interface WorkoutHistoryCardProps {
+interface HistoryCardProps {
   workout: GetWorkoutsQueryResult[0];
   onPress?: () => void;
 }
 
-const WorkoutHistoryCard: React.FC<WorkoutHistoryCardProps> = ({
+const HistoryCard: React.FC<HistoryCardProps> = ({
   workout,
   onPress,
 }) => {
@@ -108,4 +108,4 @@ const WorkoutHistoryCard: React.FC<WorkoutHistoryCardProps> = ({
   );
 };
 
-export default WorkoutHistoryCard;
+export default HistoryCard;

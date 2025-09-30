@@ -4,8 +4,8 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { useRouter } from "expo-router";
 import { useUser } from "@clerk/clerk-expo";
 import { useGetWorkouts } from "@/hooks/useWorkouts";
-import WorkoutHistoryCard from "@/components/WorkoutHistoryCard";
-import HistoryCardSkeleton from "@/components/HistoryCardSkeleton";
+import HistoryCard from "@/components/WorkoutHistory/HistoryCard";
+import HistorySkeleton from "@/components/WorkoutHistory/HistorySkeleton";
 import ErrorState from "@/components/ErrorState";
 import EmptyState from "@/components/EmptyState";
 
@@ -45,7 +45,7 @@ export default function HistoryPage() {
   }
 
   return (
-    <SafeAreaView className="flex-1 bg-gray-50">
+    <SafeAreaView edges={["top"]} className="flex-1 bg-gray-50">
       {/* Header Section */}
       <View className="px-6 pt-4 pb-2 bg-white border-b border-gray-100">
         <Text className="text-3xl font-bold text-gray-900 mb-2">
@@ -62,13 +62,12 @@ export default function HistoryPage() {
 
       {/* Content */}
       {isLoading ? (
-        <HistoryCardSkeleton count={4} />
+        <HistorySkeleton count={4} />
       ) : workouts && workouts.length > 0 ? (
         <ScrollView
           className="flex-1"
           contentContainerStyle={{
             paddingVertical: 16,
-            paddingBottom: Platform.OS === "android" ? 100 : 20,
           }}
           showsVerticalScrollIndicator={false}
           refreshControl={
@@ -83,7 +82,7 @@ export default function HistoryPage() {
           }
         >
           {workouts.map((workout) => (
-            <WorkoutHistoryCard
+            <HistoryCard
               key={workout._id}
               workout={workout}
               onPress={() => handleWorkoutPress(workout._id)}

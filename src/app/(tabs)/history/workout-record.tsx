@@ -1,19 +1,12 @@
 import React from "react";
-import {
-  View,
-  Text,
-  ScrollView,
-  TouchableOpacity,
-  Alert,
-  Platform,
-} from "react-native";
+import { View, Text, ScrollView, TouchableOpacity, Alert } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { useUser } from "@clerk/clerk-expo";
 import { Ionicons } from "@expo/vector-icons";
 import { useDeleteWorkout, useGetWorkouts } from "@/hooks/useWorkouts";
-import { formatDate, formatDuration } from "@/utils/timeUtils";
-import WorkoutExerciseCard from "@/components/WorkoutExerciseCard";
+import { formatDuration } from "@/utils/timeUtils";
+import ExerciseCard from "@/components/WorkoutHistory/ExerciseCard";
 
 export default function WorkoutRecord() {
   const { workoutId } = useLocalSearchParams();
@@ -202,7 +195,7 @@ export default function WorkoutRecord() {
 
       {/* Exercise Cards */}
       {workout.exercises?.map((exercise, index) => (
-        <WorkoutExerciseCard
+        <ExerciseCard
           key={exercise._key}
           exercise={exercise}
           exerciseIndex={index + 1}

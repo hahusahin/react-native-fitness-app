@@ -1,8 +1,8 @@
 import React from "react";
 import { View, Text, Image, TouchableOpacity, Platform } from "react-native";
-import { Exercise } from "../lib/sanity/types";
-import { urlFor } from "../lib/sanity/client";
-import { getDifficultyColorClass } from "../utils/difficultyUtils";
+import { Exercise } from "../../lib/sanity/types";
+import { urlFor } from "../../lib/sanity/client";
+import { getDifficultyColorClass } from "../../utils/difficultyUtils";
 
 interface ExerciseCardProps {
   exercise: Exercise;

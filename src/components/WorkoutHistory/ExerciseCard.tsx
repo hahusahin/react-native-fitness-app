@@ -2,7 +2,7 @@ import React from "react";
 import { View, Text } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
-interface WorkoutExerciseCardProps {
+interface ExerciseCardProps {
   exercise: {
     exercise: {
       _id: string;
@@ -22,7 +22,7 @@ interface WorkoutExerciseCardProps {
   exerciseIndex: number;
 }
 
-const WorkoutExerciseCard: React.FC<WorkoutExerciseCardProps> = ({
+const ExerciseCard: React.FC<ExerciseCardProps> = ({
   exercise,
   exerciseIndex,
 }) => {
@@ -111,4 +111,4 @@ const WorkoutExerciseCard: React.FC<WorkoutExerciseCardProps> = ({
   );
 };
 
-export default WorkoutExerciseCard;
+export default ExerciseCard;
